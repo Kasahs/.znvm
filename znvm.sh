@@ -43,34 +43,16 @@ load-nvm() {
 	# export MANPATH=$NVM_DIR/versions/node/$NVM_LATEST_VERSION/share/man:$MANPATH
 }
 
-autoload -U add-zsh-hook
-load-nvmrc() {
-	# if current dir has .nvmrc and nvm has not been loaded
-	# load nvm
-	local NVMRC_PATH="$(znvm_find_nvmrc)"
-	if [ -n "$NVMRC_PATH" ] && [ -z "$NVM_DIR" ]; then
-		load-nvm
-	fi
 
-	#ensure nvm has loaded
-	if [ -n "$NVM_DIR" ]; then
+# ensure znvm download location is correct
+local ZNVM_PATH="$HOME/.znvm"
+local ZNVMSH_PATH="$ZNVM_PATH/znvm.sh"
 
-		local NODE_VERSION="$(nvm version)"
+if [ ! -f $ZNVMSH_PATH ]; then
+	echo "ERROR: Could not find $ZNVMSH_PATH. Please ensure $ZNVM_PATH exists."
+	echo "INFO: Follow installation instructions as stated in the README.md file."
+	exit 1
+fi
 
-		if [ -n "$NVMRC_PATH" ]; then
-			local NVMRC_NODE_VERSION=$(nvm version "$(cat "${NVMRC_PATH}")")
-
-			if [ "$NVMRC_NODE_VERSION" = "N/A" ]; then
-				nvm install
-			elif [ "$NVMRC_NODE_VERSION" != "$NODE_VERSION" ]; then
-				nvm use
-			fi
-		elif [ "$NODE_VERSION" != "$(nvm version default)" ]; then
-			echo "Reverting to nvm default version"
-			nvm use default
-		fi
-	fi
-}
-add-zsh-hook chpwd load-nvmrc
-
+source "$ZNVM_PATH/loadnvmrc.sh"
 alias nvm='load-nvm'

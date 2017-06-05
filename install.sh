@@ -27,5 +27,3 @@ fi
 
 # source znvm.sh inside .zshrc
 echo "source $ZNVMSH_PATH" >> $ZSHRC_PATH
-# # add nvm alias
-# echo "alias nvm='load-nvm'" >> $ZSHRC_PATH 
