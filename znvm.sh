@@ -1,3 +1,4 @@
+#! /bin/zsh 
 # #############################################################
 # Load nvm only when called explicitly or 
 # when dir contains .nvmrc file.
@@ -53,6 +54,7 @@ if [ ! -f $ZNVMSH_PATH ]; then
 	echo "INFO: Follow installation instructions as stated in the README.md file."
 	exit 1
 fi
-
 source "$ZNVM_PATH/loadnvmrc.sh"
 alias nvm='load-nvm'
+
+export ZNVM_ACTIVE="ZNVM"
