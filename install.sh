@@ -1,5 +1,11 @@
 #! /bin/zsh
 
+# if .znvm/ not found clone it
+if [ ! -d "$HOME/.znvm" ]; then
+	cd $HOME
+	git clone https://github.com/Kasahs/.znvm.git
+fi
+
 # ensure znvm download location is correct
 local ZNVM_PATH="$HOME/.znvm"
 local ZNVMSH_PATH="$ZNVM_PATH/znvm.sh"

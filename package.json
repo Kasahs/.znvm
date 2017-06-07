@@ -1,0 +1,29 @@
+{
+  "name": "znvm",
+  "version": "1.0.0",
+  "description": "lazy load nvm on zsh along with obvious .nvmrc file behaviour",
+  "main": "install.sh",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kasahs/znvm.git"
+  },
+  "keywords": [
+    "nvm",
+    "zsh",
+    "fast",
+    "lazy-load",
+    "lazy load",
+    "nodejs",
+    ".nvmrc",
+    "nvm use"
+  ],
+  "author": "Shasak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kasahs/znvm/issues"
+  },
+  "homepage": "https://github.com/Kasahs/znvm#readme"
+}
