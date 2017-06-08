@@ -6,7 +6,7 @@ local ZNVMSH_PATH="$ZNVM_PATH/znvm.sh"
 
 # clone znvm if not in desired location
 if [ ! -f $ZNVMSH_PATH ]; then
-	echo "cloning znvm ..."
+	echo "installing znvm ..."
 	git clone https://github.com/Kasahs/.znvm.git $ZNVM_PATH
 else
 	echo "znvm already installed, updating..."
@@ -18,7 +18,7 @@ fi
 local ZSHRC_PATH="$HOME/.zshrc"
 
 if [ ! -f $ZSHRC_PATH ]; then
-	echo "ERROR: $ZSHRC_PATH doesn't exist. Aborting"
+	echo "ERROR: $ZSHRC_PATH doesn't exist. Aborted."
 	exit 1
 fi
 
@@ -27,7 +27,7 @@ fi
 local NVM_PATH="$HOME/.nvm/nvm.sh"
 echo $NVM_PATH
 if [ ! -f $NVM_PATH ]; then
-	echo "ERROR: $NVM_PATH not found. Please check your nvm installation."
+	echo "ERROR: $NVM_PATH not found. Please check your nvm installation. Aborted."
 	exit 1
 fi
 
@@ -35,4 +35,5 @@ fi
 # source znvm.sh inside .zshrc if not already
 if [ -z "$ZNVM_ACTIVE" ]; then
 	echo "source $ZNVMSH_PATH" >> $ZSHRC_PATH
+	export ZNVM_ACTIVE="ZNVM"
 fi
