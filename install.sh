@@ -35,5 +35,4 @@ fi
 # source znvm.sh inside .zshrc if not already
 if [ -z "$ZNVM_ACTIVE" ]; then
 	echo "source $ZNVMSH_PATH" >> $ZSHRC_PATH
-	export ZNVM_ACTIVE="ZNVM"
 fi

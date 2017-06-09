@@ -13,3 +13,4 @@ fi
 
 #load main script and assign nvm alias
 source "$ZNVM_PATH/loadnvmrc.sh"
+export ZNVM_ACTIVE="ZNVM"
