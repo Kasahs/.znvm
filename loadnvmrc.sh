@@ -34,20 +34,27 @@ znvm_find_nvmrc() {
 }
 
 load-nvm() {
-	unalias nvm
-	echo "loading nvm..."
-	export NVM_DIR="$HOME/.nvm"
-	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+	# if nvm command is present nvm is ready no need to load
+	if [[ $(command -v nvm) == "nvm" ]]; then
+		echo "nvm is ready"
+	else
+		# unalias nvm if alias exists
+		[ `alias | grep nvm | wc -l` != 0 ] && unalias nvm
+
+		echo "loading nvm..."
+		export NVM_DIR="$HOME/.nvm"
+		[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+		[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+	fi
 }
 
 
 autoload -U add-zsh-hook
-load-nvmrc() {
+load-by-nvmrc() {
 	# if current dir has .nvmrc and nvm has not been loaded
 	# load nvm
 	local NVMRC_PATH="$(znvm_find_nvmrc)"
-	if [ -n "$NVMRC_PATH" ] && [ -z "$NVM_DIR" ]; then
+	if [ -n "$NVMRC_PATH" ] && [[ ! $(command -v nvm) == "nvm" ]]; then
 		load-nvm
 	fi
 
@@ -70,6 +77,6 @@ load-nvmrc() {
 		fi
 	fi
 }
-add-zsh-hook chpwd load-nvmrc
+add-zsh-hook chpwd load-by-nvmrc
 
 alias nvm='load-nvm'

@@ -13,4 +13,20 @@ fi
 
 #load main script and assign nvm alias
 source "$ZNVM_PATH/loadnvmrc.sh"
+source "$ZNVM_PATH/znvm.conf.sh"
+
+znvm_contains_elem () {
+  local e match="$1"
+  shift
+  for e; do [[ "$e" == "$match" ]] && return 0; done
+  return 1
+}
+
+znvm_load_pre_exec () {
+ 	if znvm_contains_elem "$1" "${ZNVM_PREEXEC[@]}"; then
+ 		load-nvm
+	fi
+}
+add-zsh-hook preexec znvm_load_pre_exec
+
 export ZNVM_ACTIVE="ZNVM"
