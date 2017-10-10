@@ -7,6 +7,8 @@ makes zsh with nvm fast and more convenient
 * If node vesion in ```.nvmrv``` is not installed it will automatically call ```nvm install <node_version>``` 
 * Can be configured to load nvm before certain commands are executed on the shell (such as editors and IDEs)
 
+<p> <span style="color: red">WARNING:</span> Do not install using npm. Use methods mentioned below.</p>
+
 ### Installation - automatic
 
 ```zsh
