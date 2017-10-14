@@ -1,6 +1,6 @@
 {
   "name": "znvm",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "lazy load nvm on zsh along with obvious .nvmrc file behaviour",
   "main": "install.sh",
   "scripts": {
